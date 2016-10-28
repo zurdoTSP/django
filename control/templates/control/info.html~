@@ -1,0 +1,66 @@
+{% extends "control/vista.html" %}
+{% block resultado %}
+	<center><h2>-{{art.cabecera}}-</h2>
+	<P ALIGN="CENTER"><IMG SRC="{{art.imagen.url}}"   width="150px" height="150px"/></p>
+	<p>{{art.texto}}</p>
+	{% if var %}
+		<a href="/control/borrar/{{art.pk}}">borrar</a>
+	{% endif %}
+	</center>
+
+	<center><ul class="list-inline">
+	<h3>TIENDAS</h3>
+	{% for a in ubicaciones %}
+	 
+			
+	 		 <li><a class="btn btn-default" href="/control/vercoor/{{a.pk}}">{{a.tienda}}</a></li>
+			
+		
+
+	{% endfor %}
+	<li><div><a class="btn btn-default" href="#ventana"  >+</a></div></li>
+		 <div id="ventana" class="modalmask">
+	    <div class="modalbox movedown">
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>Nueva</h2>
+		{% for a in listCor %}
+	 
+			
+	 		 <li><a href="/control/agregarubi/{{nombre}}/{{a.pk}}/">{{a.tienda}}</a></li>
+			
+		
+
+		{% endfor %}
+			 <li><a href="/control/coordenadas">Agregar nueva coordenada</a></li>
+	    </div>
+	</div>
+
+	 </ul></center>
+	<center><p>puntuación: 10</p></center>
+	{% if n == True %}
+		<center><form id="contact-form" method='post'  action='' enctype="multipart/form-data">{% csrf_token %}
+		{{form2.as_p}}
+		<input type="submit" name="submit" value="Calificar"></center>
+		</form>
+		{% endif %}
+		</br>
+	{% for a in comentarios %}
+	
+		<center><h2>{{a.creador.user}}</h2>
+		<P ALIGN="CENTER"><IMG SRC="{{a.creador.imagen.url}}"   width="50px" height="50px"/></p>
+		<p>{{a.texto}}</p></center>
+		{% if var %}
+			<center><a href="/control/borrarcon/{{a.pk}}">Borrar</a></center>
+		{% endif %}
+		</br>
+	{% endfor %}
+	<center><p>Deja tu comentario:</center></center>
+	{% if n == True %}
+	<center><form id="contact-form" method='post' action='' enctype="multipart/form-data">{% csrf_token %}
+	{{form.as_p}}
+	<input type="submit" name="submit" value="Comentar"></center>
+	</form>
+	{% endif %}
+
+{% endblock resultado %}
+

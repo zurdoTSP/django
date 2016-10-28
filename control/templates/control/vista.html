@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<div class="contenedor">
+	<head>
+		<metacharset="UTF-8">
+		<title>Ejemplo</title>
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/estilos.css">
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/fonts.css">
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/ejemplo.css" />
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+	</head>
+	<body>
+		<header>
+			<div class="logotipo">
+				<img src="{{ STATIC_URL }}css/prueba.png" alt="">
+			</div>
+			{% block opciones %}
+			<div class="menu_bar">
+				<a class="bt-menu" href="#"><span class="icon-list2"></span>Menu</a>
+			</div>
+			{% endblock opciones %}
+			
+			<nav>
+				<ul>
+				<li><a href="http://127.0.0.1:8000/control/"><span class="icon-home3"> </span>Inicio</a></li>
+				{% if n %}
+				<li><a href="http://127.0.0.1:8000/control/cerrar"><span class="icon-exit"></span>Cerrar</a></li>
+				<li><a href="http://127.0.0.1:8000/control/crear"><span class="icon-pencil2"></span>Modificar datos</a></li>
+				<li><a href="http://127.0.0.1:8000/control/mostrar"><span class="icon-happy"></span>Perfil</a></li>
+				<li><a href="http://127.0.0.1:8000/control/ArticuloNevo"><span class="icon-pacman"></span>Crear Articulo</a></li>
+				<li><a href="http://127.0.0.1:8000/control/bandeja"><span class="icon-envelop"></span><span class="badge pull-right">{{ps}}</span>Bandeja</a></li>
+				{% if var %}
+				<li><a href="control/ListaBorrar"><span class="icon-cross"></span>Borrar Juego</a></li> 
+				{% endif %}
+				{% else %}
+				<li><a href="http://127.0.0.1:8000/control/usuario"><span class="icon-pencil"></span>Registrar</a></li>
+				<li><a href="http://127.0.0.1:8000/control/login"><span class="icon-github4"></span>Login</a></li>
+				{% endif %}
+				</ul>
+			</nav>
+			
+		</header>
+		 <div id="prueba" class="modalmask">
+	    <div class="modalbox movedown">
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>Busqueda:</h2>
+		<form id="contact-form" method='post' action=''>{% csrf_token %}
+		{{form.as_ul}}
+		<input type="submit" name="submit" value="Crear Articulo">
+		</form>
+
+	    </div>
+	</div>
+		<section class="main">
+			<section class="articles">
+				{% block resultado %}
+
+				
+				{% for a in artAdmin|slice:":3"  %}
+				<article>
+					<h2>{{a.cabecera}}</h2>
+					<img src="{{a.imagen.url}}" alt="">
+					<p>{{a.texto}}</p>
+
+				</article>
+				{% endfor %}
+
+				{% endblock resultado %}
+			</section>
+			<aside>
+			
+			<ul>
+				<center><h3><font color="yellow">Catalogo</font></h3></center>
+				{% for a in articulo|slice:":20" %}		
+					<li><a href="http://127.0.0.1:8000/control/info/{{a.pk}}">{{a.cabecera}}</a></li>	
+
+				{% endfor %}
+					<li><b><a href="http://127.0.0.1:8000/control/lista">MÁS</a></b></li>	
+			</ul>
+			</aside>
+		</section>
+		<footer>
+			<p>© Todos los derechos resrvados a Pilar Arjona y Antonio J Campos</p>
+		</footer>
+	</body>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	
+	<script src="{{ STATIC_URL }}css/menu.js"></script>
+	
+	<script src="{{ STATIC_URL }}css/ventana.js"></script>
+</div>
+</html>

@@ -1,0 +1,46 @@
+{% extends "control/vista.html" %}
+{% block resultado %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+			<script> 
+			$(document).ready(function(){
+			    $("#flip").click(function(){
+				$("#panel").slideToggle("slow");
+			    });
+			});
+			</script>
+	<ul>
+
+<center><a class="btn btn-long" href="http://127.0.0.1:8000/control/escribirMensaje">ESCRIBIR MENSAJE</a></center>
+		{% for mensajes in bandeja %}
+			<style> 
+				#panel{{mensajes.pk}}, #flip{{mensajes.pk}} {
+				    padding: 5px;
+				    text-align: center;
+				    background-color: #e5eecc;
+				    border: solid 2px #c3c3c3;
+				    width:100%;
+				}
+
+				#panel{{mensajes.pk}} {
+				  
+				    padding: 5px;
+				    display: none;
+				}
+			</style>
+			<script> 
+				$(document).ready(function(){
+				    $("#flip{{mensajes.pk}}").click(function(){
+					$("#panel{{mensajes.pk}}").slideToggle("slow");
+				    });
+				});
+			</script>
+			<center><div id="flip{{mensajes.pk}}"><h4>{{mensajes.titulo}} por {{mensajes.autor}}</h4></div>
+			<div id="panel{{mensajes.pk}}">{{mensajes.texto}}</div></center>
+		 
+		   
+		{% endfor %}
+
+	</ul>
+
+{% endblock resultado %}
+

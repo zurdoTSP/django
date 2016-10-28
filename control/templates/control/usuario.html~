@@ -1,0 +1,9 @@
+{% extends "control/vista.html" %}
+{% block resultado %}
+<div id="contenedorr3">
+	<form id='form' method='post' action=''>{% csrf_token %}
+		{{form.as_ul}}
+		<input type="submit" name="submit" value="Entrar">
+	</form>
+</div>
+{% endblock resultado %}

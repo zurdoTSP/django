@@ -1,0 +1,27 @@
+{% extends "control/vista.html" %}
+{% block resultado %}
+	<form id="contact-form" method='post' action='' enctype="multipart/form-data">{% csrf_token %}
+	{{form.as_p}}
+	<input type="submit" name="submit" value="Buscar"></center>
+	</form>
+<section class="galeria">
+	{% for a in articulos %}
+	 
+	   
+	 	<div><p><a href="#{{a.pk}}"><img  src="{{a.imagen.url}}"/></a></p></div>
+		 <div id="{{a.pk}}" class="modalmask">
+	    <div class="modalbox movedown">
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>{{a.cabecera}}</h2>
+		<p>{{a.texto}}</p>
+		<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Generating%20QR%20Codes%20on%20Code%20http://127.0.0.1:8000/control/info/{{a.pk}}" />
+	    </div>
+	</div>
+
+	
+
+	{% endfor %}
+	
+	</section>
+{% endblock resultado %}
+

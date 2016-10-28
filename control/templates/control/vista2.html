@@ -1,0 +1,60 @@
+
+<div id="container">
+	<div id="header">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/ejemplo.css" />
+		<h1>
+			<center>LIBREX TS</center>
+		</h1>
+	</div>
+	<div id="navigation">
+		<ul>
+			<li><a href="http://127.0.0.1:8000/control/">Inicio</a></li>
+			{% if n %}
+				<li><a href="http://127.0.0.1:8000/control/cerrar">Cerrar cuenta</a></li>
+				<li><a href="http://127.0.0.1:8000/control/crear">Modificar datos</a></li>
+				<li><a href="http://127.0.0.1:8000/control/mostrar">Perfil</a></li>
+				<li><a href="http://127.0.0.1:8000/control/ArticuloNevo">Crear articulo</a></li>
+			{% else %}
+				<li><a href="http://127.0.0.1:8000/control/usuario">Crear Cuenta</a></li>
+				<li><a href="http://127.0.0.1:8000/control/login">Login</a></li>
+			{% endif %}
+		</ul>
+	</div>
+	<div id="content-container">
+		<div id="section-navigation">
+			<ul>
+				<li><a href="http://127.0.0.1:8000/control/amigos">Buscar Usuario</a></li>
+				<li><a href="http://127.0.0.1:8000/control/lista">Articulos recientes</a></li>
+				<li><a href="http://127.0.0.1:8000/control/amiList">Lista de amigos</a></li>
+			</ul>
+		</div>
+		<div id="content">
+		{% block resultado %}
+
+			<h2>
+				LIBREX 
+			</h2>
+			<p>
+				Red social de desarrolladores indies. En esta comunidad podrás aprender, crear, enseñar tu proyecto libre al mundo y que este de su opinión y te ayude a mejorarlo.
+			</p>
+			<p>
+				Contamos con un sistema de votos, podrás calificar proyecto y recivir calificaciones de otros usuarios de los que podrás hacerte amigos y seguir sus proyectos en tiempo real.
+
+		{% endblock resultado %}
+		</div>
+		<div id="aside">
+			<h3>
+				Historial de articulos
+			</h3>
+			{% for a in articulo %}
+				<li>
+					<p><a href="http://127.0.0.1:8000/control/info/{{a.cabecera}}">{{a.cabecera}}</p>
+				</li>
+			{% endfor %}
+		</div>
+		<div id="footer">
+			Copyright © LIBREX, 2014
+		</div>
+	</div>
+</div>
+

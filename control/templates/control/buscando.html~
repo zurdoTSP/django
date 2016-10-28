@@ -1,0 +1,7 @@
+{% extends "control/vista.html" %}
+{% block resultado %}
+	<p><img class="alineadoTextoImagenArriba" src="{{nombre.imagen.url}}"   width="120px" height="120px"/>nombre: <a href="http://172.16.213.19:8000/control/username/{{nombre.user}}">{{nombre.nombre}}</a></p>
+	<p><a href="http://127.0.0.1:8000/control/agregar/{{nombre.user}}">Agregar amigo</a></p>
+
+{% endblock resultado %}
+

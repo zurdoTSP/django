@@ -1,0 +1,18 @@
+{% extends "control/vista.html" %}
+{% block resultado %}
+	<form id="contact-form" method='post' action='' enctype="multipart/form-data">{% csrf_token %}
+	{{form.as_p}}
+	<input type="submit" name="submit" value="Buscar"></center>
+	</form>
+	<section class="galeria">
+	{% for a in usuarios %}
+		
+			<div><a href="http://127.0.0.1:8000/control/agregar/{{a.pk}}"><img  src="{{a.imagen.url}}"/></a></div>
+		 
+		   
+		{% endfor %}
+
+	</section>
+
+{% endblock resultado %}
+

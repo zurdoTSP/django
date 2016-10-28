@@ -1,0 +1,35 @@
+{% extends "control/vista.html" %}
+{% block resultado %}
+	<p><img class="alineadoTextoImagenArriba" src="{{name.imagen.url}}"   width="120px" height="120px"/></p>
+	<section class="zurdo">
+	<center><h2 >Nombre: {{name.nombre}}</h2>
+	<h2>Sexo: {{name.sexo}}</h2>
+	<h2>Edad: {{name.edad}}</h2>
+	</section>
+	 <br/>
+	 <br/>
+
+<section class="galeria">
+	{% for a in articulos %}
+	 
+	   
+	 	<div><p><a href="#{{a.pk}}"><img  src="{{a.imagen.url}}"/></a></p></div>
+		 <div id="{{a.pk}}" class="modalmask">
+	    <div class="modalbox movedown">
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>{{a.cabecera}}</h2>
+		<p>{{a.texto}}</p>
+		<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Generating%20QR%20Codes%20on%20Code%20http://127.0.0.1:8000/control/info/{{a.pk}}" />
+		<center><a href="/control/info/{{a.pk}}" ><h3>MÁS</h3></a></center>
+	    </div>
+	</div>
+
+	
+
+	{% endfor %}
+	
+	</section>
+
+
+	
+{% endblock resultado %}

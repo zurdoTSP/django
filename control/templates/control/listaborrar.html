@@ -1,0 +1,16 @@
+{% extends "control/vista.html" %}
+{% block resultado %}
+<section class="galeria">
+	{% for a in articulo %}
+	 
+	   
+	 	<div><p><a href="/control/borrar/{{a.pk}}"><img  src="{{a.imagen.url}}"/></a></p></div>
+
+
+	
+
+	{% endfor %}
+	
+	</section>
+{% endblock resultado %}
+
